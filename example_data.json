@@ -1,0 +1,46 @@
+// rename this file to data.json for the OPA extension to find it
+{
+    "entity_grants": {
+        "alice": [
+            "a",
+            "b",
+            "c",
+            "1",
+            "2",
+            "3"
+        ],
+        "bob": [
+            "x",
+            "y",
+            "z",
+            "4",
+            "5",
+            "6"
+        ]
+    },
+    "role_grants": {
+        "accountant": [
+            "properties__read",
+            "txns__read",
+            "txns__write"
+        ],
+        "president": [
+            "properties__read",
+            "properties__write",
+            "txns__read",
+            "txns__write"
+        ]
+    },
+    "user_roles": {
+        "alice": [
+            "president"
+        ],
+        "bob": [
+            "accountant"
+        ],
+        "charlie": [
+            "president",
+            "accountant"
+        ]
+    }
+}

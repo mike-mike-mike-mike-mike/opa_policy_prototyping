@@ -1,0 +1,10 @@
+// rename this file to input.json for the OPA extension to find it
+{
+  "actions": [
+      "properties__read",
+      "txns__write"
+  ],
+  "entity": "z",
+  "is_renewal": true,
+  "user": "bob"
+}
