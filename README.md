@@ -17,11 +17,14 @@ If you choose to set up the VSCode extension, you should be able to open a rego 
 ### CLI
 
 If you are just using the OPA CLI, you should be able to run the following command from the root of this repo:
+
 ```bash
 opa eval --data=./app/rbac/rbac.rego 'data.app.rbac.allow' --data=data.json --input=input.json
 ```
+
 The output should look something like this:
-```bash
+
+```json
 {
   "result": [
     {
@@ -38,4 +41,22 @@ The output should look something like this:
     }
   ]
 }
+```
+
+### Server
+
+To run the OPA server with all of the policies loaded and the data from `data.json`, run the following command from the root of this repo:
+
+```bash
+opa run --server --set=decision_logs.console=true --bundle app/ data.json
+```
+
+You can then make requests to the server, using the -d flag to specify input data. To specify a policy/decision, modify the URL to include the package and rule name. I.e. `http://localhost:8181/v1/data/app/{package}/{decision}`.
+
+```bash
+# check if alice has "properties__read" access against the RBAC policy
+curl http://localhost:8181/v1/data/app/rbac/allow -d '{"input": {"user":"alice", "actions":["properties__read"]}}'
+
+# check if alice has "properties__read" access on entity "a"
+curl http://localhost:8181/v1/data/app/rbac_with_entity_check/allow -d '{"input": {"user":"alice", "actions":["properties__read"], "entity":"a"}}'
 ```
