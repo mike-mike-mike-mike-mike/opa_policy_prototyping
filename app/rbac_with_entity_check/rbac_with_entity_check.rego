@@ -1,3 +1,5 @@
+## THIS IS A COMMENT TO TEST IF THE POLICY GOT UPDATED
+
 # RBAC + ABAC (entity groups) example
 # --
 #
